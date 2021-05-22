@@ -19,7 +19,7 @@ CAmount CollateralRequired(int nHeight)
     CAmount nCollateralRequired;
     
     if (nHeight >= 1) {
-        nCollateralRequired = 2500 * COIN; // 2,500 required for a node
+        nCollateralRequired = 1000000 * COIN; // 1000000 required for a node
     }
 
     return nCollateralRequired;
