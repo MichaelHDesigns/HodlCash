@@ -1681,6 +1681,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-splash"] {
     background-color:transparent;
+    background-repeat: no-repeat;
     background-image: url("://bg-splash-png");
 }
 
