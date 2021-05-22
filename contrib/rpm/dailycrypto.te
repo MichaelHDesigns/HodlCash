@@ -1,0 +1,81 @@
+policy_module(hodlcash, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type hodlcash_t;
+type hodlcash_exec_t;
+init_daemon_domain(hodlcash_t, hodlcash_exec_t)
+
+permissive hodlcash_t;
+
+type hodlcash_initrc_exec_t;
+init_script_file(hodlcash_initrc_exec_t)
+
+type hodlcash_conf_t;
+files_type(hodlcash_conf_t)
+
+type hodlcash_var_lib_t;
+files_type(hodlcash_var_lib_t)
+
+type hodlcash_var_run_t;
+files_type(hodlcash_var_run_t)
+
+type hodlcash_port_t;
+corenet_port(hodlcash_port_t)
+
+########################################
+#
+# hodlcash local policy
+#
+allow hodlcash_t self:process { fork };
+
+allow hodlcash_t self:fifo_file rw_fifo_file_perms;
+allow hodlcash_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(hodlcash_t, hodlcash_conf_t, hodlcash_conf_t)
+manage_files_pattern(hodlcash_t, hodlcash_conf_t, hodlcash_conf_t)
+
+manage_dirs_pattern(hodlcash_t, hodlcash_var_lib_t, hodlcash_var_lib_t)
+manage_files_pattern(hodlcash_t, hodlcash_var_lib_t, hodlcash_var_lib_t)
+files_var_lib_filetrans(hodlcash_t, hodlcash_var_lib_t, { dir file })
+
+manage_dirs_pattern(hodlcash_t, hodlcash_var_run_t, hodlcash_var_run_t)
+manage_files_pattern(hodlcash_t, hodlcash_var_run_t, hodlcash_var_run_t)
+
+sysnet_dns_name_resolve(hodlcash_t)
+corenet_all_recvfrom_unlabeled(hodlcash_t)
+
+allow hodlcash_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(hodlcash_t)
+corenet_tcp_sendrecv_generic_node(hodlcash_t)
+corenet_tcp_sendrecv_all_ports(hodlcash_t)
+corenet_tcp_bind_generic_node(hodlcash_t)
+
+gen_require(`
+    type hodlcash_port_t;
+')
+allow hodlcash_t hodlcash_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type hodlcash_port_t;
+')
+allow hodlcash_t hodlcash_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(hodlcash_t)
+
+files_read_etc_files(hodlcash_t)
+
+miscfiles_read_localization(hodlcash_t)
+
+sysnet_dns_name_resolve(hodlcash_t)
+
+allow hodlcash_t hodlcash_exec_t:file execute_no_trans;
+allow hodlcash_t self:process setsched;
+corecmd_exec_ls(hodlcash_t)
+corenet_tcp_connect_http_port(hodlcash_t)
+dev_read_urand(hodlcash_t)
+fs_getattr_xattr_fs(hodlcash_t)
+kernel_read_system_state(hodlcash_t)
