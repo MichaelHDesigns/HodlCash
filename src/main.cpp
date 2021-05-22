@@ -2000,14 +2000,14 @@ int64_t GetBlockValue(int nHeight)
 {
     int64_t nSubsidy = 0;
 
-    int PremineValue = 60000; //60k Premine for swap
+    int PremineValue = 10000000; //10m Premine for swap
 	int GenesisValue = 0;
 
     nHeight--;
 	if (nHeight == 0)														{ nSubsidy = GenesisValue * COIN; 
 	} else if (nHeight == 1)												{ nSubsidy = PremineValue * COIN;
-	} else if (nHeight > 1 && nHeight <= Params().LAST_POW_BLOCK())			{ nSubsidy = 0 * COIN;
-    } else if (nHeight > Params().LAST_POW_BLOCK())		                    { nSubsidy = 0.1 * COIN; }
+	} else if (nHeight > 1 && nHeight <= Params().LAST_POW_BLOCK())			{ nSubsidy = 25 * COIN;
+    } else if (nHeight > Params().LAST_POW_BLOCK())		                    { nSubsidy = 25 * COIN; }
 
     // Check if we reached the coin max supply.
     int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
