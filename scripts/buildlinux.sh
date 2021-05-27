@@ -15,5 +15,5 @@ sudo apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev open
 sudo apt-get install -y libssl-dev
 
 ./autogen.sh
-./configure --disable-gui-tests --disable-shared --disable-tests --disable-bench --with-gui=qt5 --with-icompatible-dbd --without-gui
+./configure --disable-gui-tests --disable-shared --disable-tests --disable-bench --with-gui=qt5 --with-icompatible-bdb --without-gui
 make -j$(nproc)
