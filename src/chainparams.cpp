@@ -384,7 +384,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("68.183.103.159"));
+        
  
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 100); // Testnet hodlcash addresses start with 'h'
