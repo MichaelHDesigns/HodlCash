@@ -8,6 +8,9 @@
 #include <QMetaObject>
 #include "qt/hodlcash/qtutils.h"
 
+#include <QUrl>
+#include <QDesktopServices>
+
 SettingsFaqWidget::SettingsFaqWidget(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsFaqWidget)
@@ -78,6 +81,7 @@ SettingsFaqWidget::SettingsFaqWidget(QWidget *parent) :
     setCssProperty(ui->containerButtons, "container-faq-buttons");
 
     // Buttons
+    connect(ui->pushButtonWebLink, SIGNAL(clicked()), this, SLOT(onWebLink()));
     connect(ui->pushButtonExit, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->pushButtonFaq1, SIGNAL(clicked()), this, SLOT(onFaq1Clicked()));
     connect(ui->pushButtonFaq2, SIGNAL(clicked()), this, SLOT(onFaq2Clicked()));
@@ -102,6 +106,12 @@ void SettingsFaqWidget::setSection(int num){
     if (num < 1 || num > 10)
         return;
     pos = num;
+}
+
+void SettingsFaqWidget::onWebLink() {  // Hodl Cash Wesbite
+    
+    QDesktopServices::openUrl(QUrl("https://hodlcash.tk", QUrl::TolerantMode));
+    
 }
 
 void SettingsFaqWidget::onFaq1Clicked(){
@@ -148,5 +158,3 @@ std::vector<QPushButton*> SettingsFaqWidget::getButtons(){
 SettingsFaqWidget::~SettingsFaqWidget(){
     delete ui;
 }
-
-
