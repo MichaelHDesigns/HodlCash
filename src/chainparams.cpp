@@ -337,7 +337,7 @@ public:
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 1000;
         nHodlCashBadBlockTime = 1489001494;  // Skip nBit validation of Block 259201 per PR #915
         nHodlCashBadBlocknBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
         nMaturity = 6;
