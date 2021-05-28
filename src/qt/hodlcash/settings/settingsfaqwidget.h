@@ -25,6 +25,7 @@ public slots:
    void windowResizeEvent(QResizeEvent* event);
    void setSection(int num);
 private slots:
+    void onWebLink();
     void onFaq1Clicked();
     void onFaq2Clicked();
     void onFaq3Clicked();
