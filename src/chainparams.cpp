@@ -189,7 +189,7 @@ public:
         nMinColdStakingAmount = 1 * COIN;
 
         nCollateralMaturity = 60;                 // 3 month locking period after nCollateralMaturityEnforcementHeight is reached
-        nCollateralMaturityEnforcementHeight = 10000; // Starting at block 10k to give time to setup nodes
+        nCollateralMaturityEnforcementHeight = 225; // Starting at block 10k to give time to setup nodes
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 2500;
